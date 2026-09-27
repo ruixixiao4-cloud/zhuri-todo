@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f5f0">
+  <title>逐日 - 今日清单</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="逐日首页">
+        <span class="brand-mark" aria-hidden="true">日</span>
+        <span>逐日</span>
+      </a>
+      <div class="topbar-date" id="topbar-date"></div>
+    </header>
+
+    <section class="welcome" id="top" aria-labelledby="page-title">
+      <div class="welcome-copy">
+        <p class="eyebrow" id="full-date"></p>
+        <h1 id="page-title">今天，先完成一件小事。</h1>
+        <p class="welcome-note">不用一次做完所有事，向前一步就很好。</p>
+      </div>
+      <div class="daily-mark" aria-hidden="true">
+        <span class="daily-mark-small">今日进度</span>
+        <span class="daily-mark-value" id="progress-value">0%</span>
+        <span class="daily-mark-note" id="progress-note">刚刚开始</span>
+      </div>
+    </section>
+
+    <div class="workspace">
+      <section class="task-area" aria-labelledby="list-title">
+        <form class="add-form" id="todo-form">
+          <label class="visually-hidden" for="todo-input">添加一项待办</label>
+          <input id="todo-input" name="todo" type="text" maxlength="180" placeholder="接下来想做什么？" autocomplete="off" required>
+          <button class="add-button" type="submit"><span class="plus-icon" aria-hidden="true"></span><span>添加任务</span></button>
+        </form>
+
+        <div class="list-heading">
+          <div>
+            <p class="eyebrow">清单</p>
+            <h2 id="list-title">待办事项 <span class="task-count" id="task-count">0</span></h2>
+          </div>
+          <div class="filters" role="group" aria-label="筛选待办事项">
+            <button class="filter-button is-selected" type="button" data-filter="all" aria-pressed="true">全部</button>
+            <button class="filter-button" type="button" data-filter="active" aria-pressed="false">未完成</button>
+            <button class="filter-button" type="button" data-filter="completed" aria-pressed="false">已完成</button>
+          </div>
+        </div>
+
+        <ul class="task-list" id="todo-list" aria-label="待办事项列表"></ul>
+        <div class="empty-state" id="empty-state" hidden>
+          <span class="empty-spark" aria-hidden="true">✳</span>
+          <p class="empty-title" id="empty-title">这里还很清静。</p>
+          <p class="empty-note" id="empty-note">写下第一件想做的事吧。</p>
+        </div>
+        <div class="list-footer">
+          <span id="remaining-count">还没有待办</span>
+          <button class="clear-button" id="clear-completed" type="button" hidden>清除已完成</button>
+        </div>
+        <p class="sr-live" id="live-message" aria-live="polite"></p>
+      </section>
+
+      <aside class="overview" aria-labelledby="overview-title">
+        <div class="overview-heading">
+          <span class="overview-icon" aria-hidden="true">✳</span>
+          <h2 id="overview-title">一点一点来</h2>
+        </div>
+        <p class="overview-copy">把注意力放在眼前的这一件，剩下的稍后再说。</p>
+        <div class="progress-section">
+          <div class="progress-label-row">
+            <span>今日完成</span>
+            <span id="completion-fraction">0 / 0</span>
+          </div>
+          <div class="progress-track" role="progressbar" aria-label="今日任务完成进度" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progress-bar">
+            <span class="progress-fill" id="progress-fill"></span>
+          </div>
+        </div>
+        <div class="overview-divider"></div>
+        <div class="overview-stats">
+          <div class="stat-row"><span class="stat-dot stat-dot-open"></span><span>还要做</span><strong id="open-total">0</strong></div>
+          <div class="stat-row"><span class="stat-dot stat-dot-done"></span><span>已完成</span><strong id="done-total">0</strong></div>
+        </div>
+        <p class="overview-footnote">保存于此设备 · 无需注册</p>
+      </aside>
+    </div>
+  </main>
+</body>
+</html>
